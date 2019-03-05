@@ -1,11 +1,14 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { TestModule } from './test.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+      ],
+      imports: [
+        TestModule
       ],
     }).compileComponents();
   }));
@@ -16,16 +19,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'robo-cleaner'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('robo-cleaner');
-  });
-
-  it('should render title in a h1 tag', () => {
+  it('should render title in a toolbar', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to robo-cleaner!');
+    expect(compiled.querySelector('.title').textContent).toContain('Robo Cleaner');
   });
 });

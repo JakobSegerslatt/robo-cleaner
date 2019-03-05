@@ -100,6 +100,7 @@ export class TilesComponent implements OnInit {
     this.checkIfDone();
   }
 
+  /** Verifies that all tiles has been cleaned, and if so marks the cleaning as finished */
   checkIfDone(): void {
     if (this.tiles.every(t => t.clean)) {
       this.posService.stop();
