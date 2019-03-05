@@ -1,0 +1,8 @@
+<div class="tiles">
+  <div class="tile-board" [ngStyle]="tileBoardStyles">
+    <div *ngIf="posService.isStarted" class="robot" [ngStyle]="stylesForRobot">🤖</div>
+    <div *ngFor="let tile of tiles" class="tile" [ngClass]="{clean: tile.clean}" [ngStyle]="stylesForTile(tile)">
+
+    </div>
+  </div>
+</div>

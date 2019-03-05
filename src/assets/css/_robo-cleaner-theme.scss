@@ -1,0 +1,28 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+@import 'tiles/_tiles-theme';
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$robo-cleaner-primary: mat-palette($mat-teal);
+$robo-cleaner-accent: mat-palette($mat-deep-orange, 400, 200, 700);
+
+// @function mat-palette($base-palette, $default: 500, $lighter: 100, $darker: 700) {
+
+// The warn palette is optional (defaults to red).
+$robo-cleaner-warn: mat-palette($mat-red);
+// Create the theme object (a Sass map containing all of the palettes).
+$robo-cleaner-theme: mat-light-theme($robo-cleaner-primary, $robo-cleaner-accent, $robo-cleaner-warn);
+$robo-cleaner-dark-theme: mat-dark-theme($robo-cleaner-primary, $robo-cleaner-accent, $robo-cleaner-warn);
+@include angular-material-theme($robo-cleaner-theme);
+@include tiles-theme($robo-cleaner-theme);
+.robo-cleaner-dark-theme {
+    @include angular-material-theme($robo-cleaner-dark-theme);
+    @include tiles-theme($robo-cleaner-dark-theme);
+}

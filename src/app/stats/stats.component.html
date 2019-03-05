@@ -1,0 +1,36 @@
+<div class="stats">
+  <div fxLayout="row wrap" fxLayoutGap="15px">
+    <mat-form-field>
+      <mat-label>Columns</mat-label>
+      <input type="number" min="1" required matInput [(ngModel)]="posService.tileColumns" (ngModelChange)="inputChanged()"
+        [disabled]="posService.isStarted">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Rows</mat-label>
+      <input type="number" min="1" required matInput [(ngModel)]="posService.tileRows" (ngModelChange)="inputChanged()"
+        [disabled]="posService.isStarted">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Robot speed</mat-label>
+      <input type="number" min="10" required matInput [(ngModel)]="posService.moveSpeed" (ngModelChange)="inputChanged()"
+        [disabled]="posService.isStarted">
+      <span matSuffix>ms</span>
+    </mat-form-field>
+  </div>
+  <div>
+    <b>Elapsed time</b>
+    <div>{{ posService.elapsedTime | displayTime}}</div>
+  </div>
+  <div class="push-down">
+    <button mat-raised-button color="primary" (click)="posService.start()"
+      [disabled]="posService.isMoving || posService.isFinished">Start</button>
+    <button mat-button (click)="posService.stop()" [disabled]="!posService.isMoving">Stop</button>
+    <button mat-button color="warn" (click)="posService.reset()" [disabled]="!posService.isStarted">Reset</button>
+  </div>
+
+  <div *ngIf="posService.isFinished" class="push-down">
+    <h3>
+      Cleaning Complete in {{ posService.elapsedTime }} seconds!
+    </h3>
+  </div>
+</div>

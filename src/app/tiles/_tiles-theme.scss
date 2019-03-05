@@ -1,0 +1,19 @@
+@mixin tiles-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+    .tiles {
+        border: 12px solid mat-color($accent, darker);
+        border-radius: 10px;
+        .tile-board {
+            .tile {
+                background-color: mat-color($accent);
+            }
+            .tile.clean {
+                background-color: #00c853; // Material Green A700
+            }
+        }
+    }
+}

@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+@import '_robo-cleaner-theme';
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+app-root {
+    display: block;
+    height: 100%;
+}
+
+.push-down {
+    margin-top: 15px;
+}
+
+.push-up {
+    margin-bottom: 15px;
+}
