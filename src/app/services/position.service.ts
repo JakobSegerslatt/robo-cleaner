@@ -28,12 +28,16 @@ export class PositionService {
   /** Timer for the elapsed time */
   private elapsedTimer: Timer;
 
-  private timerSub: Subscription;
+  /** Subscription for the timer repsonsible for trigger new robot moves  */
+  private moveTimerSub: Subscription;
 
+  /** Triggers every time the robot should move */
   public moveRobot = new Subject<void>();
 
+  /** Triggers every time the tiles should be marked dirty */
   public resetTiles = new Subject<void>();
 
+  /** Triggers every time the amount tile columns/rows should be reset */
   public updateTiles = new Subject<void>();
   constructor() { }
 
@@ -76,14 +80,16 @@ export class PositionService {
     this.isMoving = true;
   }
 
+  /** Starts a timer for the elapsed time for this cleaning session */
   startElapsedTimer(): any {
     this.elapsedTimer = new Timer(() => {
       this.elapsedTime++;
     }, 1000);
   }
 
+  /** Starts a timer for the robot movements */
   startMoving(): any {
-    this.timerSub = timer(this.moveSpeed, this.moveSpeed)
+    this.moveTimerSub = timer(this.moveSpeed, this.moveSpeed)
       .subscribe(_ => {
         this.moveRobot.next();
       });
@@ -93,7 +99,7 @@ export class PositionService {
    * Simply stops the current moving and elapsed timers
    */
   public stop(): void {
-    this.timerSub.unsubscribe();
+    this.moveTimerSub.unsubscribe();
     this.elapsedTimer.stop();
     this.isMoving = false;
   }

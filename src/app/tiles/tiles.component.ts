@@ -3,7 +3,12 @@ import { MatSnackBar } from '@angular/material';
 import { getRandomEntry } from 'papilion';
 
 import { PositionService } from '../services/position.service';
-import { Tile } from './tile';
+
+export interface Tile {
+  column: number;
+  row: number;
+  clean: boolean;
+}
 
 enum Direction {
   North = 'North',
